@@ -1,0 +1,30 @@
+node {
+    stage('Non-parallel Stage 1') {
+        echo 'Executing Non-parallel Stage 1'
+        // Your commands for Non-parallel Stage 1
+    }
+    
+    stage('Parallel Stage ABC') {
+        parallel(
+            "Stage A": {
+                echo 'Executing Stage A'
+                // Your commands for Stage A
+            },
+            "Parallel Stages BC": {
+                stage('Stage B') {
+                    echo 'Executing Stage B'
+                    // Your commands for Stage B
+                }
+                stage('Stage C') {
+                    echo 'Executing Stage C'
+                    // Your commands for Stage C
+                }
+            }
+        )
+    }
+    
+    stage('Non-parallel Stage 2') {
+        echo 'Executing Non-parallel Stage 2'
+        // Your commands for Non-parallel Stage 2
+    }
+}
